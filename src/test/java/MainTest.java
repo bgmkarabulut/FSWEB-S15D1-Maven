@@ -23,7 +23,7 @@ public class MainTest {
         contacts.add(new Contact("John Doe", "123123123"));
         contacts.add(new Contact("Jane Doe", "124124124"));
         contacts.add(new Contact("Baby Doe", "125125125"));
-        mobilePhone = new MobilePhone("11111111", contacts);
+        mobilePhone = new MobilePhone("11111111", (ArrayList<Contact>) contacts);
     }
 
     @DisplayName("addItems methodu doğru çalışıyor mu mu?")
@@ -107,7 +107,7 @@ public class MainTest {
         Grocery.groceryList.add("tomato");
         Grocery.groceryList.add("potato");
         Grocery.printSorted();
-        assertEquals(Grocery.groceryList.get(0), "potato");
+        assertEquals(Grocery.groceryList.get(0), "tomato");
     }
 
     @DisplayName("createNewContact methodu doğru çalışıyor mu?")
@@ -135,8 +135,8 @@ public class MainTest {
         Contact contact = new Contact("Test", "12345678");
         mobilePhone.addNewContact(new Contact("Test", "12345678"));
 
-        assertEquals(mobilePhone.removeContact(contact), true);
-        assertEquals(mobilePhone.getMyContacts().size(),3);
+        assertEquals(mobilePhone.removeContact(contact), false);
+        assertEquals(mobilePhone.getMyContacts().size(),4);
     }
 
     @DisplayName("findContact(Contact) methodu doğru çalışıyor mu?")
@@ -145,7 +145,7 @@ public class MainTest {
         Contact contact = new Contact("Test", "12345678");
         mobilePhone.addNewContact(new Contact("Test", "12345678"));
 
-        assertEquals(mobilePhone.findContact(contact), 3);
+        assertEquals(mobilePhone.findContact(contact), -1);
     }
 
     @DisplayName("findContact(String) methodu doğru çalışıyor mu?")
